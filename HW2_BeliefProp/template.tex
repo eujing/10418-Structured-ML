@@ -1,0 +1,1220 @@
+\documentclass[11pt,addpoints,answers]{exam}
+%\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsfonts}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage{url}
+\usepackage{xfrac}
+% \usepackage{fancyhdr} % CONFLICTS with the exam class
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{paralist}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{paralist}
+\usepackage[svgname]{xcolor}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{times}
+\usepackage{url}
+\usepackage{comment}
+\usepackage{environ}
+\usepackage{times}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{parskip} % For NIPS style paragraphs.
+\usepackage[compact]{titlesec} % Less whitespace around titles
+\usepackage[inline]{enumitem} % For inline enumerate* and itemize*
+\usepackage{datetime}
+\usepackage{comment}
+% \usepackage{minted}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes,decorations,bayesnet}
+%\usepackage{framed}
+\usepackage{booktabs}
+\usepackage{cprotect}
+\usepackage{xcolor}
+\usepackage{verbatimbox}
+\usepackage[many]{tcolorbox}
+\usepackage{cancel}
+\usepackage{wasysym}
+\usepackage{mdframed}
+\usepackage{subcaption}
+\usetikzlibrary{shapes.geometric}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting for \CorrectChoice of "exam" %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\CorrectChoiceEmphasis{}
+\checkedchar{\blackcircle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Better numbering                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Common Math Commands                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom commands                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\newcommand{\adj}[1]{\frac{d J}{d #1}}
+\newcommand{\chain}[2]{\adj{#2} = \adj{#1}\frac{d #1}{d #2}}
+
+% mathcal
+\newcommand{\Ac}{\mathcal{A}}
+\newcommand{\Bc}{\mathcal{B}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Dc}{\mathcal{D}}
+\newcommand{\Ec}{\mathcal{E}}
+\newcommand{\Fc}{\mathcal{F}}
+\newcommand{\Gc}{\mathcal{G}}
+\newcommand{\Hc}{\mathcal{H}}
+\newcommand{\Ic}{\mathcal{I}}
+\newcommand{\Jc}{\mathcal{J}}
+\newcommand{\Kc}{\mathcal{K}}
+\newcommand{\Lc}{\mathcal{L}}
+\newcommand{\Mc}{\mathcal{M}}
+\newcommand{\Nc}{\mathcal{N}}
+\newcommand{\Oc}{\mathcal{O}}
+\newcommand{\Pc}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
+\newcommand{\Rc}{\mathcal{R}}
+\newcommand{\Sc}{\mathcal{S}}
+\newcommand{\Tc}{\mathcal{T}}
+\newcommand{\Uc}{\mathcal{U}}
+\newcommand{\Vc}{\mathcal{V}}
+\newcommand{\Wc}{\mathcal{W}}
+\newcommand{\Xc}{\mathcal{X}}
+\newcommand{\Yc}{\mathcal{Y}}
+\newcommand{\Zc}{\mathcal{Z}}
+
+% mathbb
+\newcommand{\Ab}{\mathbb{A}}
+\newcommand{\Bb}{\mathbb{B}}
+\newcommand{\Cb}{\mathbb{C}}
+\newcommand{\Db}{\mathbb{D}}
+\newcommand{\Eb}{\mathbb{E}}
+\newcommand{\Fb}{\mathbb{F}}
+\newcommand{\Gb}{\mathbb{G}}
+\newcommand{\Hb}{\mathbb{H}}
+\newcommand{\Ib}{\mathbb{I}}
+\newcommand{\Jb}{\mathbb{J}}
+\newcommand{\Kb}{\mathbb{K}}
+\newcommand{\Lb}{\mathbb{L}}
+\newcommand{\Mb}{\mathbb{M}}
+\newcommand{\Nb}{\mathbb{N}}
+\newcommand{\Ob}{\mathbb{O}}
+\newcommand{\Pb}{\mathbb{P}}
+\newcommand{\Qb}{\mathbb{Q}}
+\newcommand{\Rb}{\mathbb{R}}
+\newcommand{\Sb}{\mathbb{S}}
+\newcommand{\Tb}{\mathbb{T}}
+\newcommand{\Ub}{\mathbb{U}}
+\newcommand{\Vb}{\mathbb{V}}
+\newcommand{\Wb}{\mathbb{W}}
+\newcommand{\Xb}{\mathbb{X}}
+\newcommand{\Yb}{\mathbb{Y}}
+\newcommand{\Zb}{\mathbb{Z}}
+
+% mathbf lowercase
+\newcommand{\av}{\mathbf{a}}
+\newcommand{\bv}{\mathbf{b}}
+\newcommand{\cv}{\mathbf{c}}
+\newcommand{\dv}{\mathbf{d}}
+\newcommand{\ev}{\mathbf{e}}
+\newcommand{\fv}{\mathbf{f}}
+\newcommand{\gv}{\mathbf{g}}
+\newcommand{\hv}{\mathbf{h}}
+\newcommand{\iv}{\mathbf{i}}
+\newcommand{\jv}{\mathbf{j}}
+\newcommand{\kv}{\mathbf{k}}
+\newcommand{\lv}{\mathbf{l}}
+\newcommand{\mv}{\mathbf{m}}
+\newcommand{\nv}{\mathbf{n}}
+\newcommand{\ov}{\mathbf{o}}
+\newcommand{\pv}{\mathbf{p}}
+\newcommand{\qv}{\mathbf{q}}
+\newcommand{\rv}{\mathbf{r}}
+\newcommand{\sv}{\mathbf{s}}
+\newcommand{\tv}{\mathbf{t}}
+\newcommand{\uv}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\wv}{\mathbf{w}}
+\newcommand{\xv}{\mathbf{x}}
+\newcommand{\yv}{\mathbf{y}}
+\newcommand{\zv}{\mathbf{z}}
+
+% mathbf uppercase
+\newcommand{\Av}{\mathbf{A}}
+\newcommand{\Bv}{\mathbf{B}}
+\newcommand{\Cv}{\mathbf{C}}
+\newcommand{\Dv}{\mathbf{D}}
+\newcommand{\Ev}{\mathbf{E}}
+\newcommand{\Fv}{\mathbf{F}}
+\newcommand{\Gv}{\mathbf{G}}
+\newcommand{\Hv}{\mathbf{H}}
+\newcommand{\Iv}{\mathbf{I}}
+\newcommand{\Jv}{\mathbf{J}}
+\newcommand{\Kv}{\mathbf{K}}
+\newcommand{\Lv}{\mathbf{L}}
+\newcommand{\Mv}{\mathbf{M}}
+\newcommand{\Nv}{\mathbf{N}}
+\newcommand{\Ov}{\mathbf{O}}
+\newcommand{\Pv}{\mathbf{P}}
+\newcommand{\Qv}{\mathbf{Q}}
+\newcommand{\Rv}{\mathbf{R}}
+\newcommand{\Sv}{\mathbf{S}}
+\newcommand{\Tv}{\mathbf{T}}
+\newcommand{\Uv}{\mathbf{U}}
+\newcommand{\Vv}{\mathbf{V}}
+\newcommand{\Wv}{\mathbf{W}}
+\newcommand{\Xv}{\mathbf{X}}
+\newcommand{\Yv}{\mathbf{Y}}
+\newcommand{\Zv}{\mathbf{Z}}
+
+% bold greek lowercase
+\newcommand{\alphav     }{\boldsymbol \alpha     }
+\newcommand{\betav      }{\boldsymbol \beta      }
+\newcommand{\gammav     }{\boldsymbol \gamma     }
+\newcommand{\deltav     }{\boldsymbol \delta     }
+\newcommand{\epsilonv   }{\boldsymbol \epsilon   }
+\newcommand{\varepsilonv}{\boldsymbol \varepsilon}
+\newcommand{\zetav      }{\boldsymbol \zeta      }
+\newcommand{\etav       }{\boldsymbol \eta       }
+\newcommand{\thetav     }{\boldsymbol \theta     }
+\newcommand{\varthetav  }{\boldsymbol \vartheta  }
+\newcommand{\iotav      }{\boldsymbol \iota      }
+\newcommand{\kappav     }{\boldsymbol \kappa     }
+\newcommand{\varkappav  }{\boldsymbol \varkappa  }
+\newcommand{\lambdav    }{\boldsymbol \lambda    }
+\newcommand{\muv        }{\boldsymbol \mu        }
+\newcommand{\nuv        }{\boldsymbol \nu        }
+\newcommand{\xiv        }{\boldsymbol \xi        }
+\newcommand{\omicronv   }{\boldsymbol \omicron   }
+\newcommand{\piv        }{\boldsymbol \pi        }
+\newcommand{\varpiv     }{\boldsymbol \varpi     }
+\newcommand{\rhov       }{\boldsymbol \rho       }
+\newcommand{\varrhov    }{\boldsymbol \varrho    }
+\newcommand{\sigmav     }{\boldsymbol \sigma     }
+\newcommand{\varsigmav  }{\boldsymbol \varsigma  }
+\newcommand{\tauv       }{\boldsymbol \tau       }
+\newcommand{\upsilonv   }{\boldsymbol \upsilon   }
+\newcommand{\phiv       }{\boldsymbol \phi       }
+\newcommand{\varphiv    }{\boldsymbol \varphi    }
+\newcommand{\chiv       }{\boldsymbol \chi       }
+\newcommand{\psiv       }{\boldsymbol \psi       }
+\newcommand{\omegav     }{\boldsymbol \omega     }
+
+% bold greek uppercase
+\newcommand{\Gammav     }{\boldsymbol \Gamma     }
+\newcommand{\Deltav     }{\boldsymbol \Delta     }
+\newcommand{\Thetav     }{\boldsymbol \Theta     }
+\newcommand{\Lambdav    }{\boldsymbol \Lambda    }
+\newcommand{\Xiv        }{\boldsymbol \Xi        }
+\newcommand{\Piv        }{\boldsymbol \Pi        }
+\newcommand{\Sigmav     }{\boldsymbol \Sigma     }
+\newcommand{\Upsilonv   }{\boldsymbol \Upsilon   }
+\newcommand{\Phiv       }{\boldsymbol \Phi       }
+\newcommand{\Psiv       }{\boldsymbol \Psi       }
+\newcommand{\Omegav     }{\boldsymbol \Omega     }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code highlighting with listings         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{light-gray}{gray}{0.95}
+
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinelanguage{Shell}{
+  keywords={tar, cd, make},
+  %keywordstyle=\color{bluekeywords}\bfseries,
+  alsoletter={+},
+  ndkeywords={python, py, javac, java, gcc, c, g++, cpp, .txt, octave, m, .tar},
+  %ndkeywordstyle=\color{bluekeywords}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]",
+  backgroundcolor = \color{light-gray}
+}
+
+\lstset{columns=fixed, basicstyle=\ttfamily,
+    backgroundcolor=\color{light-gray},xleftmargin=0.5cm,frame=tlbr,framesep=4pt,framerule=0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom box for highlights               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define box and box title style
+\tikzstyle{mybox} = [fill=blue!10, very thick,
+    rectangle, rounded corners, inner sep=1em, inner ysep=1em]
+
+% \newcommand{\notebox}[1]{
+% \begin{tikzpicture}
+% \node [mybox] (box){%
+%     \begin{minipage}{\textwidth}
+%     #1
+%     \end{minipage}
+% };
+% \end{tikzpicture}%
+% }
+
+\NewEnviron{notebox}{
+\begin{tikzpicture}
+\node [mybox] (box){
+    \begin{minipage}{\textwidth}
+        \BODY
+    \end{minipage}
+};
+\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands showing / hiding solutions     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% To HIDE SOLUTIONS (to post at the website for students), set this value to 0: \def\issoln{0}
+\def\issoln{1}
+% Some commands to allow solutions to be embedded in the assignment file.
+\ifcsname issoln\endcsname \else \def\issoln{0} \fi
+% Default to an empty solutions environ.
+\NewEnviron{soln}{}{}
+% Default to an empty qauthor environ.
+\NewEnviron{qauthor}{}{}
+% Default to visible (but empty) solution box.
+\newtcolorbox[]{studentsolution}[1][]{%
+    breakable,
+    enhanced,
+    colback=white,
+    title=Solution,
+    #1
+}
+
+\if\issoln 1
+% Otherwise, include solutions as below.
+\RenewEnviron{soln}{
+    \leavevmode\color{red}\ignorespaces
+    \textbf{Solution} \BODY
+}{}
+\fi
+
+\if\issoln 1
+% Otherwise, include solutions as below.
+\RenewEnviron{solution}{}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for customizing the assignment %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\courseNum}{10-418 / 10-618}
+\newcommand{\courseName}{Machine Learning for Structured Data}
+\newcommand{\courseSem}{Fall 2019}
+\newcommand{\piazzaUrl}{\url{https://piazza.com/cmu/fall2019/1041810618}}
+\newcommand{\hwNum}{Homework 2}
+\newcommand{\hwTopic}{Graphical Models}
+\newcommand{\hwName}{\hwNum: \hwTopic}
+\newcommand{\outDate}{Sep. 26, 2019}
+\newcommand{\dueDate}{Oct. 09, 2019 11:59 PM}
+\newcommand{\taNames}{Karthika, Aakanksha, Austin}
+
+%\pagestyle{fancyplain}
+\lhead{\hwName}
+\rhead{\courseNum}
+\cfoot{\thepage{} of \numpages{}}
+
+\title{\textsc{\hwName}} % Title
+
+
+\author{\courseName\\
+  Carnegie Mellon University \\
+\url{piazza.com/cmu/fall2018/10606607} \\
+OUT: \outDate{}\thanks{Compiled on \today{} at \currenttime{}} \\
+DUE: \dueDate{} \\ 
+TAs: Aakanksha, Edgar, Sida, Varsha}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Useful commands for typesetting the questions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand \expect {\mathbb{E}}
+\newcommand \mle [1]{{\hat #1}^{\rm MLE}}
+\newcommand \map [1]{{\hat #1}^{\rm MAP}}
+\newcommand \argmax {\operatorname*{argmax}}
+\newcommand \argmin {\operatorname*{argmin}}
+\newcommand \code [1]{{\tt #1}}
+\newcommand \datacount [1]{\#\{#1\}}
+\newcommand \ind [1]{\mathbb{I}\{#1\}}
+
+\newcommand{\blackcircle}{\tikz\draw[black,fill=black] (0,0) circle (1ex);}
+\renewcommand{\circle}{\tikz\draw[black] (0,0) circle (1ex);}
+
+\newcommand{\pts}[1]{\textbf{[#1 pts]}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document configuration %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't display a date in the title and remove the white space
+\predate{}
+\postdate{}
+\date{}
+
+% Don't display an author and remove the white space
+%\preauthor{}
+%\postauthor{}
+
+%%%%%%%%%%%%%%%%%%
+% Begin Document %
+%%%%%%%%%%%%%%%%%% 
+
+
+\begin{document}
+
+\section*{}
+\begin{center}
+  \textsc{\LARGE \hwNum} \\
+  \textsc{\LARGE \hwTopic\footnote{Compiled on \today{} at \currenttime{}}} \\
+  \vspace{1em}
+  \textsc{\large \courseNum{} \courseName{} (\courseSem)} \\
+  %\vspace{0.25em}
+  \piazzaUrl\\
+  \vspace{1em}
+  OUT: \outDate \\
+  %\vspace{0.5em}
+  DUE: \dueDate \\
+  TAs: \taNames
+\end{center}
+
+
+\section*{START HERE: Instructions}
+
+\begin{notebox}
+\paragraph{Summary} In this assignment, you will implement a baseline LSTM  model for constituency parsing followed by a general  CRF (Conditional Random Field) and train both jointly. Section \ref{sec:warmup} will help you develop a better understanding of directed and undirected graphical models through some warm-up problems. Then, in Section \ref{sec:code}, you will build on these intuitions to implement an LSTM-CRF model and compare its performance with a vanilla LSTM.
+\end{notebox}
+
+\begin{itemize}
+\item \textbf{Collaboration policy:} Collaboration on solving the homework is allowed, after you have thought about the problems on your own. It is also OK to get clarification (but not solutions) from books or online resources, again after you have thought about the problems on your own. There are two requirements: first, cite your collaborators fully and completely (e.g., ``Jane explained to me what is asked in Question 2.1''). Second, write your solution {\em independently}: close the book and all of your notes, and send collaborators out of the room, so that the solution comes from you only.  See the Academic Integrity Section on the course site for more information: \url{http://www.cs.cmu.edu/~mgormley/courses/10418/about.html#7-academic-integrity-policies}
+
+\item\textbf{Late Submission Policy:} See the late submission policy here: \url{http://www.cs.cmu.edu/~mgormley/courses/10418/about.html#6-general-policies}
+
+%\item\textbf{Submitting your work:} 
+
+%\begin{itemize}
+
+% Since we are not using Canvas this semester.
+% \item \textbf{Canvas:} We will use an online system called Canvas for short answer and multiple choice questions. You can log in with your Andrew ID and password. (As a reminder, never enter your Andrew password into any website unless you have first checked that the URL starts with "https://" and the domain name ends in ".cmu.edu" -- but in this case it's OK since both conditions are met).  You may only \textbf{submit once} on canvas, so be sure of your answers before you submit.  However, canvas allows you to work on your answers and then close out of the page and it will save your progress.  You will not be granted additional submissions, so please be confident of your solutions when you are submitting your assignment.
+
+\item \textbf{Autolab:} You will submit your code for programming questions on the homework to Autolab (\url{https://autolab.andrew.cmu.edu/}). After uploading your code,
+we will manually grade your code by hand. We will not use Autolab to autograde your code.
+
+\item \textbf{Submitting your work to Gradescope:} For written problems such as short answer, multiple choice, derivations, proofs, or plots, we will be using Gradescope (\url{https://gradescope.com/}). Please use the provided template. Submissions can be handwritten, but should be labeled and clearly legible. If your writing is not legible, you will not be awarded marks. Alternatively, submissions can be written in LaTeX. Regrade requests can be made, however this gives the TA the opportunity to regrade your entire paper, meaning if additional mistakes are found then points will be deducted. For short answer questions you \textbf{should not} include your work in your solution.  If you include your work in your solutions, your assignment may not be graded correctly by our AI assisted grader. 
+
+%\end{itemize}
+
+%\item \textbf{Materials:} Download from autolab the tar file (``Download handout"). The tar file will contain all the data that you will need in order to complete this assignment.
+
+\end{itemize}
+
+%Homework 9 will be on Gradescope, but will be "Canvas-style"- all problems will be multiple choice, select all that apply, or numerical answer. 
+
+For multiple choice or select all that apply questions, shade in the box or circle in the template document corresponding to the correct answer(s) for each of the questions. For \LaTeX{} users, replace \lstinline{\choice} with \lstinline{\CorrectChoice} to obtain a shaded box/circle, and don't change anything else.
+
+
+\clearpage
+
+%\input{qtemplates.tex}
+%\clearpage
+%\input{instructions.tex}
+%\clearpage
+\section{Written Questions \pts{\numpoints{}}}
+\label{sec:warmup}
+Answer the following questions in the template provided.  Then upload your solutions to Gradescope. You may use \LaTeX\ or print the template and hand-write your answers then scan it in. Failure to use the template may result in a penalty. There are \numpoints{} points and \numquestions{} questions.
+
+\subsection{Conditional Independencies}
+\begin{questions}
+\question Consider the Bayesian Network described in Figure \ref{fig:bayesnet}
+
+\begin{figure}[h]
+\centering
+\tikz{
+\node[latent] (A) {A};
+\node[latent,below left= 1 cm and 1 cm of A] (B) {B};
+\node[latent,below right= 1 cm and 1 cm of A] (C) {C};
+\node[latent,below right=1 cm and 1 cm of C] (E) {E};
+\node[latent,above right=1 cm and 1 cm of E] (D) {D};
+\node[latent,below=0.75 cm of B] (F) {F};
+\node[latent,below right=1 cm and 1 cm of B] (G) {G};
+
+\edge {A} {B,C};
+\edge {B} {F,G};
+\edge {C} {G,E};
+\edge {D} {E};
+}
+\caption{Bayesian Network Structure}
+\label{fig:bayesnet}
+\end{figure}
+
+Based on this network structure, answer the following questions:
+
+\begin{parts}
+\part[1] Write down the equation for the joint probability distribution $P(A, B, C, D, E, F, G)$ 
+ \begin{tcolorbox}[fit,height=2cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\part[1] Is $C \perp D \mid E$?
+     \begin{checkboxes}
+     \choice True 
+     \choice False
+    \end{checkboxes}
+
+\part[1] Is $A \perp F \mid B$?
+     \begin{checkboxes}
+     \choice True 
+     \choice False
+    \end{checkboxes}
+
+\part[1] Is $A \perp G \mid B$?
+     \begin{checkboxes}
+     \choice True 
+     \choice False
+    \end{checkboxes}
+
+\part[1] Which nodes are present in the Markov blanket of $B$?
+     \begin{tcolorbox}[fit,height=1cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\part[1] Which nodes are present in the Markov blanket of $D$?
+     \begin{tcolorbox}[fit,height=1cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+\end{parts}
+
+
+\question Now consider an undirected graphical model with the same set of nodes and edges as the bayesian network from figure \ref{fig:ugm}. This model structure looks as follows:\\
+\begin{figure}[h]
+\centering
+\tikz{
+\node[latent] (A) {A};
+\node[latent,below left= 1 cm and 1 cm of A] (B) {B};
+\node[latent,below right= 1 cm and 1 cm of A] (C) {C};
+\node[latent,below right=1 cm and 1 cm of C] (E) {E};
+\node[latent,above right=1 cm and 1 cm of E] (D) {D};
+\node[latent,below=0.75 cm of B] (F) {F};
+\node[latent,below right=1 cm and 1 cm of B] (G) {G};
+
+\edge [-] {A} {B,C};
+\edge [-] {B} {F,G};
+\edge [-] {C} {G,E};
+\edge [-] {D} {E};
+}
+\caption{Undirected Graphical Model}
+\label{fig:ugm}
+\end{figure}
+
+For this model structure, answer the following questions:
+\begin{parts}
+\part[1] Is $C \perp D \mid E$?
+     \begin{checkboxes}
+     \choice True 
+     \choice False
+    \end{checkboxes}
+
+\part[1] Is $A \perp F \mid B$?
+     \begin{checkboxes}
+     \choice True 
+     \choice False
+    \end{checkboxes}
+
+\part[1] Is $A \perp G \mid B$?
+     \begin{checkboxes}
+     \choice True 
+     \choice False
+    \end{checkboxes}
+
+\part[1] Which nodes are present in the Markov blanket of $B$?
+     \begin{tcolorbox}[fit,height=1cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\part[1] Which nodes are present in the Markov blanket of $D$?
+     \begin{tcolorbox}[fit,height=1cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\end{parts}
+
+\question Let us now compare both models (\ref{fig:bayesnet} and \ref{fig:ugm}).
+\begin{parts}
+\part[1] Do both models (\ref{fig:bayesnet} and \ref{fig:ugm}) have the same set of conditional independencies?
+     \begin{checkboxes}
+     \choice Yes 
+     \choice No
+    \end{checkboxes}
+
+\part[2] If you answered yes to the above question, list out all the conditional independencies. If you answered no, provide an example of a graph which does have the same set of conditional independencies for both directed and undirected variants.
+     \begin{tcolorbox}[fit,height=3cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\part[2] For the directed bayesian network, we decomposed the joint probability distribution into a product of conditional probability distributions associated with each node. However, we did not do so for the undirected model. Is it possible to write joint probability as a product of factors \textit{without} performing marginalization (i.e. no summations) for a general undirected graphical model? Explain your answer. 
+     \fillwithlines{9em}
+
+\end{parts}
+
+\end{questions}
+
+\clearpage
+\subsection{Variable Elimination}
+
+\begin{questions}
+\question In class, we looked at an example of variable elimination on an arbitrary graph. Let us now apply variable elimination to a familiar directed graphical model: Hidden Markov Model. A Hidden Markov Model consists of two sets of variables: $X_i$ (observations) and $Y_i$ (states). States are unobserved latent variables which satisfy the Markov property i.e. each state only depends on the state which immediately precedes it. Each state generates an observation. The complete structure of the model (for a sequence of length 5) looks as follows:
+\begin{figure}[h]
+\centering
+\tikz{
+\node[latent] (x1) {$X_1$};
+\node[latent,right= 1.5 cm of x1] (x2) {$X_2$};
+\node[latent,right= 1.5 cm of x2] (x3) {$X_3$};
+\node[latent,right= 1.5 cm of x3] (x4) {$X_4$};
+\node[latent,right= 1.5 cm of x4] (x5) {$X_5$};
+
+\node[latent,below= 1 cm of x1] (y1) {$Y_1$};
+\node[latent,right= 1.5 cm of y1] (y2) {$Y_2$};
+\node[latent,right= 1.5 cm of y2] (y3) {$Y_3$};
+\node[latent,right= 1.5 cm of y3] (y4) {$Y_4$};
+\node[latent,right= 1.5 cm of y4] (y5) {$Y_5$};
+
+\edge {y1} {x1};
+\edge {y2} {x2};
+\edge {y3} {x3};
+\edge {y4} {x4};
+\edge {y5} {x5};
+
+\edge {y1} {y2};
+\edge {y2} {y3};
+\edge {y3} {y4};
+\edge {y4} {y5};
+
+}
+\caption{Hidden Markov Model}
+\label{fig:hmm}
+\end{figure}
+
+\begin{parts}
+\part[2] Draw the corresponding factor graph for this model. \\
+
+\begin{mdframed}[backgroundcolor=black!5,linewidth=0pt]
+\begin{lstlisting}[escapeinside=||,backgroundcolor={}]
+Latex users: If you want to use tikz to draw the factor graph,
+here is a sample code snippet for a tiny factor graph:
+\tikz[square/.style={regular polygon,regular polygon sides=4}]
+{
+\node[latent] (A) {A};
+\node[latent,right=1.5 cm of A] (B) {B};
+\node[square, draw=black, right=0.5 cm of A] (ab) {};
+\edge [-] {A} {ab};
+\edge [-] {B} {ab};
+}
+This snippet generates the following graph:
+|\tikz[square/.style={regular polygon,regular polygon sides=4}]{
+\node[latent] (A) {A};
+\node[latent,right=1.5 cm of A] (B) {B};
+\node[square, draw=black, right=0.5 cm of A] (ab) {};
+\edge [-] {A} {ab};
+\edge [-] {B} {ab};
+}|
+\end{lstlisting}
+\end{mdframed}
+
+\begin{tcolorbox}[fit,height=5cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\part[2] For this model, write down the joint probability distribution as a product of conditional probability distributions.
+     \begin{tcolorbox}[fit,height=3cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+\part[4] Suppose we wish to compute the probability $P(Y_5\mid X_1...X_5)$, which requires us to marginalize over $Y_1...Y_4$. Assume that we are eliminating variables in the order $Y_1-Y_2-Y_3-Y_4$. Write down equations for the factors which will be computed at each step of the elimination process.
+\bgroup
+\def\arraystretch{2}
+\begin{center}
+\begin{tabular}{ |c|p{9cm}|} 
+ \hline
+ \textbf{Variable Eliminated} & \textbf{Factor Computed}\\
+ \hline
+ $Y_1$ &  \\ 
+ \hline
+ $Y_2$ & \\ 
+ \hline
+ $Y_3$ &  \\ 
+ \hline
+ $Y_4$ &  \\ 
+ \hline
+\end{tabular}
+\end{center}
+\egroup
+
+\part[1] Is it possible to pick a better elimination order for this model?
+\begin{checkboxes}
+     \choice Yes 
+     \choice No
+    \end{checkboxes}
+
+\part[0] Do you observe any similarities between the factors computed during variable elimination and the standard forward-backward algorithm for HMMs?
+    \fillwithlines{4em}
+\end{parts}
+
+\question In class, we saw how using variable elimination is more efficient than naively computing the joint probability. In this problem, we will further study how the order in which variable elimination is carried out affects the efficiency of this method. Consider the following undirected graphical model:
+
+\begin{figure}[h]
+\centering
+\tikz{
+\node[latent] (B) {B};
+\node[latent,below left= 1 cm and 1 cm of B] (A) {A};
+\node[latent,below right=1 cm and 1 cm of A] (D) {D};
+\node[latent,below right=1 cm and 1 cm of B] (C) {C};
+\node[latent,above right=1 cm and 1 cm of C] (E) {E};
+\node[latent,below right=1 cm and 1 cm of C] (F) {F};
+\node[latent,below right=1 cm and 1 cm of E] (G) {G};
+
+\edge [-] {A} {B,D};
+\edge [-] {B} {C,D};
+\edge [-] {C} {D};
+\edge [-] {E} {C,F,G};
+\edge [-] {F} {C,G};
+}
+\caption{Initial graph for variable elimination}
+\label{fig:ve}
+\end{figure}
+
+\begin{parts}
+
+\part[2] Draw a factor graph for this model, with each factor corresponding to a maximal clique in the graph
+
+\begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+% TODO: change to tables
+
+\part[4] For the variable elimination order $A-G-B-D-E-F-C$, draw the intermediate factor graph at each step
+\bgroup
+\def\arraystretch{6}
+\begin{center}
+\begin{tabular}{ |c|p{9cm}|} 
+ \hline
+ \textbf{Variable Eliminated} & \textbf{Intermediate Factor Graph}\\
+ \hline
+$A$ & \\ 
+ \hline
+ $G$ & \\ 
+ \hline
+ $B$ &  \\ 
+ \hline
+ $D$ &  \\
+ \hline
+  $E$ & \\ 
+ \hline
+ $F$ &  \\ 
+ \hline
+ $C$ &  \\ 
+ \hline
+\end{tabular}
+\end{center}
+\egroup
+    
+\part[4] For the variable elimination order $C-B-E-A-D-F-G$, draw the intermediate factor graph at each step
+\bgroup
+\def\arraystretch{6}
+\begin{center}
+\begin{tabular}{ |c|p{9cm}|} 
+ \hline
+ \textbf{Variable Eliminated} & \textbf{Intermediate Factor Graph}\\
+ \hline
+$C$ &  \\ 
+ \hline
+ $B$ & \\ 
+ \hline
+ $E$ &  \\ 
+ \hline
+ $A$ &  \\
+ \hline
+  $D$ & \\ 
+ \hline
+ $F$ &  \\ 
+ \hline
+ $G$ &  \\ 
+ \hline
+\end{tabular}
+\end{center}
+\egroup
+    
+\part[1] Which of the above elimination orders is better and why?
+\begin{tcolorbox}[fit,height=2cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\part[1] Based on your observations, can you think of a way to estimate which elimination order is better without going through the complete process?
+\begin{tcolorbox}[fit,height=2cm, width=15cm, blank, borderline={1pt}{-2pt}]
+     % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\end{parts}
+
+\end{questions}
+
+\clearpage
+\subsection{Message Passing}
+% TODO: Add a constituency parse question
+% TODO: backprop question
+% This section can provide an on-paper warmup for the coding question
+
+\noindent
+\begin{minipage}{.4\textwidth}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{fig/hw2_tree_binary.pdf}
+    \caption{}
+    \label{fig:tree_abcde}
+\end{figure}
+
+\end{minipage}% This must go next to `\end{minipage}`
+\begin{minipage}{.6\textwidth}
+
+\begin{table}[H]
+\centering
+\begin{subtable}[t]{0.3\textwidth}
+    \centering
+    \begin{tabular}{cc} 
+        \toprule
+        $a$ & $\psi_{A}(a)$ \\
+        \midrule
+        0 & 1 \\
+        1 & 2 \\ 
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+~
+\begin{subtable}[t]{0.3\textwidth}
+    \centering
+    \begin{tabular}{cc} 
+        \toprule
+        $b$ & $\psi_{B}(b)$ \\
+        \midrule
+        0 & 2 \\
+        1 & 1 \\ 
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+~
+\begin{subtable}[t]{0.3\textwidth}
+    \centering
+    \begin{tabular}{cc} 
+        \toprule
+        $c$ & $\psi_{C}(c)$ \\
+        \midrule
+        0 & 1 \\
+        1 & 1 \\ 
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{subtable}[t]{0.3\textwidth}
+    \centering
+    \begin{tabular}{cc} 
+        \toprule
+        $d$ & $\psi_{D}(d)$ \\
+        \midrule
+        0 & 1 \\
+        1 & 1 \\ 
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+~
+\begin{subtable}[t]{0.3\textwidth}
+    \centering
+    \begin{tabular}{cc} 
+        \toprule
+        $e$ & $\psi_{E}(e)$ \\
+        \midrule
+        0 & 1 \\
+        1 & 2 \\ 
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+\end{table}
+\begin{table}[H]
+    \centering
+    \begin{subtable}[t]{0.35\textwidth}
+    \centering
+    \begin{tabular}{ccc} 
+        \toprule
+        $a$ & $e$ & $\psi_{EA}(a,e)$ \\
+        \midrule
+        0 & 0 & 1 \\
+        0 & 0 & 1 \\
+        0 & 1 & 1 \\
+        0 & 1 & 1 \\
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+~
+    \begin{subtable}[t]{0.35\textwidth}
+    \centering
+    \begin{tabular}{ccc} 
+        \toprule
+        $a$ & $d$ & $\psi_{ED}(d,e)$ \\
+        \midrule
+        0 & 0 & 1 \\
+        0 & 0 & 1 \\
+        0 & 1 & 2 \\
+        0 & 1 & 1 \\
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+\end{table}
+\begin{table}[H]
+    \centering
+    \begin{subtable}[t]{0.35\textwidth}
+    \centering
+    \begin{tabular}{ccc} 
+        \toprule
+        $b$ & $d$ & $\psi_{DB}(b,d)$ \\
+        \midrule
+        0 & 0 & 1 \\
+        0 & 0 & 2 \\
+        0 & 1 & 1 \\
+        0 & 1 & 1 \\
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+~
+    \begin{subtable}[t]{0.35\textwidth}
+    \centering
+    \begin{tabular}{ccc} 
+        \toprule
+        $c$ & $d$ & $\psi_{DC}(c,d)$ \\
+        \midrule
+        0 & 0 & 1 \\
+        0 & 0 & 1 \\
+        0 & 1 & 1 \\
+        0 & 1 & 3 \\
+        \bottomrule
+    \end{tabular}
+\end{subtable}
+\end{table}
+
+\end{minipage}
+
+
+\begin{questions}
+
+\begin{EnvFullwidth}
+Consider the factor graph in Figure \ref{fig:tree_abcde}. On paper, carry out a run of belief propagation by sending messages first from the leaves $\psi_{A}, \psi_{B}, \psi_{C}$ to the root $\psi_{E}$, and then from the root back to the leaves. Then answer the questions below. Assume all messages are un-normalized.
+\end{EnvFullwidth}
+
+\question[1] \textbf{Numerical answer:} What is the message from $A$ to $\psi_{EA}$? 
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+\question[1] \textbf{Numerical answer:} What is the message from $\psi_{DB}$ to $B$? 
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+ 
+\question[1] \textbf{Numerical answer:} What is the belief at variable $A$? 
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+\question[1] \textbf{Numerical answer:} What is the belief at variable $B$? 
+    \begin{tcolorbox}[fit,height=1cm, width=4cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+\question[1] \textbf{Numerical answer:} What is the belief at factor $\psi_{DB}$? 
+    \begin{tcolorbox}[fit,height=2cm, width=15cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+\question[1] \textbf{Numerical answer:} What is the value of the partition function?
+    \begin{tcolorbox}[fit,height=1cm, width=2cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+\end{questions}
+
+\clearpage
+\subsection{Empirical Questions}
+
+The following questions should be completed after you work through the programming portion of this assignment (Section \ref{sec:code}). 
+
+\begin{questions}
+
+\question[1] \textbf{Select one:} If you feed the inputs shown in Figure \ref{fig:tree_abcde} into your belief propagation module implemented in PyTorch do you get the same answers that you worked out on paper? \textit{(Hint: The correct answer is ``Yes''.)}
+    \begin{checkboxes}
+     \choice Yes
+     \choice No
+    \end{checkboxes}
+
+\question[10] Record your model's performance on the test set and train set in terms of Cross Entropy (CE) , accuracy (AC) and leaf accuracy (LAC). \emph{Note: Round each numerical value to two significant figures.}
+
+
+\bgroup
+\def\arraystretch{1.5}
+\begin{center}
+\begin{tabular}{ |c|p{2cm}|p{1cm}| } 
+ \hline
+ \textbf{Schedule} & \textbf{ Baseline} &  \textbf{CRF } \\
+ \hline
+Training CE &  & \\ 
+ \hline
+ Training AC &  &  \\ 
+ \hline
+
+Training LAC &  &  \\ 
+ \hline
+
+Test AC &  &  \\ 
+ \hline
+
+Test LAC &  &  \\ 
+ \hline
+
+
+\end{tabular}
+\end{center}
+\egroup
+
+\question[10] Plot training and testing cross entropy curves for : \emph{Baseline}, \textit{CRF Model}. Let the $x$-axis ranges over 3 epochs. \emph{Note: Your plot must be machine generated.}
+
+\begin{tcolorbox}[fit,height=12cm, width=15cm, blank, borderline={1pt}{-2pt}]
+% STUDENT SOLUTION HERE
+\end{tcolorbox}
+\end{questions}
+
+\subsection{Wrap-up Questions}
+
+\begin{questions}
+
+
+\question[1] \textbf{Multiple Choice:} Did you correctly submit your code to Autolab?
+    \begin{checkboxes}
+     \choice Yes 
+     \choice No
+    \end{checkboxes}
+
+\question[1] \textbf{Numerical answer:} How many hours did you spend on this assignment?.
+    \begin{tcolorbox}[fit,height=1cm, width=2cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\end{questions}
+\clearpage
+\section{Programming \pts{30}}
+\label{sec:code}
+
+Your goal in this assignment is to implement a CRF belief propagation algorithm for  constituency parsing. Given the structure of the tree, you will implement a model to tag the nodes with appropriate POS tag.
+
+
+Your solution for this section must be implemented in \textbf{PyTorch} using the data files we have provided to you. This restriction is because we will be grading your code by hand to check your understanding as well as your model's performance. 
+
+\subsection{Task Background}
+
+Constituency parsing aims to extract a parse tree from a sentence that represents its syntactic structure according to a phrase structure grammar.  Non-terminals in the tree are types of phrases, the terminals are the words in the sentence, and the edges are unlabeled. Throughout this assignment, we use nodes to refer to the set of all non terminals. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.50\linewidth]{fig/parsetree.png}
+\caption{A parse tree with eight nodes - four leaves and four intermediate nodes.}
+\label{overflow}
+\end{figure}
+
+Assuming we know the structure of this tree, our goal is to successfully predict the appropriate tag for all its nodes. 
+We will train our model with a Cross Entropy Loss, based on the beliefs of each node after message passing. We define the accuracy of the model as the average accuracy over all examples where each example consists of a tree structure with $n$ nodes. Accuracy for a single tree is defined as $$ \text{Acc} = \frac{\text{number of correctly predicted nodes }}{ \text{total number of nodes in the tree }}$$
+Note that this accuracy is computed across \textbf{all} nodes in the graph. We also define leaf accuracy as 
+$$ \text{Leaf Acc} = \frac{\text{number of correctly predicted leaf nodes }}{ \text{total number of leaves in the tree }}$$
+
+
+
+\subsection{Data}
+
+We have provided a preprocessed version of Penn Tree Bank with 49,208 examples. Each line consists of one tree. You are to split the data using a 70/30 ratio for train and test. 
+\newline
+\textbf{We have provided starter code to read each line into an NLTK tree data structure, and a custom tree structure, which you can modify.} 
+
+\textbf{Given Input:} An input sequence and the associated skeleton of its constituency parse tree.
+
+\textbf{Goal Output:} The labels of the non terminals in the parse tree.
+
+
+\subsection{Baseline}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\linewidth]{fig/baseline.png}
+\caption{Our baseline model using a unidirectional LSTM.}
+\label{learned_interp}
+\end{figure}
+
+\textbf{For this section,  you must implement a working baseline LSTM model.}
+
+
+Our baseline model uses the hidden state of an LSTM layer to predict the output tag. For the leaf nodes, this computation is trivial. For intermediate nodes, we use a linear layer on the concatenation of the hidden state of the LSTM outputs of the left and the right child to compute distributions over tags.  
+
+Your implementation must have a single layer unidirectional LSTM with a hidden dimension of 128. The embedding size should be 256. Set your optimizer to be Adam with a learning rate of 0.0001. Due to the complexity associated with building the tree and computing its potentials, you can use a batch size of 1. Your program should be able to run on a laptop without GPUs due to the simplicity of our model.  
+ 
+\subsection{Adding the CRF layer}
+
+\textbf{For this section, you must implement functions to compute the unary potentials for each node and binary potential for each edge in the tree.}
+\newline
+The CRF layer consists of computing unary node potentials and binary edge potentials derived from the LSTM hidden state. You need to compute a unary potential for every node in the graph and an edge potential for every edge. Note here that the dotted line between the non terminals and the terminals do not count as edges. 
+\newline
+Recall that these potentials are the scores associated for each of the possible tags, and have to be positive. By simply using a linear layer on the output of the LSTMs, however, we may get negative scores. To account for these negative values, we assume that the output of the linear layer is the \textbf{logarithm of potentials}. All further computation is carried out in log space. This gives us the added advantage of numerical stability[ \ref{LogSumExp}].
+
+
+\subsection{Message passing implementation}
+\textbf{For this section, you must implement a function for belief propagation.}
+
+The sum-product message passing algorithm is defined as follows: 
+
+While there is a node 
+$x_i$ ready to transmit to $x_j$, send the message
+$$m_{i \rightarrow j} = \sum_{x_i} \phi(x_i) \phi(x_i,x_j) \prod_{l \in N(i) / j} m_{ l \rightarrow i} (x_i)$$
+ 
+Here, $N(i) / j$ refers to the set of nodes that are neighbors of i, excluding j. 
+After we have computed all messages, we may answer any marginal query over $x_i$ in constant time using the equation.
+
+$$p(x_i) \propto \phi(x_i) \prod_{l \in N(i)} m_{l \rightarrow i} (x_i)$$
+
+We will be implementing the asynchronous version of the algorithm in this assignment. This consists of two sets of messages, an upward pass from the leaves to the root, and a downward pass from the root node to the leaf nodes.
+\subsection{The LogSumExp trick} \label{LogSumExp}
+The LogSumExp trick is a common trick in machine learning to deal with problems of numerical stability. 
+To illustrate the problem, consider the contrived example for our features ${x_i}$: [1000, 1000, 1000]. Feeding this sequence into the softmax function should yield a probability distribution of [1/3, 1/3, 1/3] and the log of 1/3 is a reasonable negative number. However, calculating one of the terms of the summation in python yields the following output:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.50\linewidth]{fig/overflow.png}
+
+\label{overflow}
+\end{figure}
+
+To deal with the underflow (and similar overflow), we can compute all messages and potentials in the log space. Multiplication operations on messages would then turn to addition of log messages using  $$e^a. e^b = e^{a + b}$$ and $$\log(ab) = \log (a) + \log (b)$$
+\textbf{Hint}: Pytorch has a logsumexp function which can be applied to any dimension of a tensor.
+
+\subsection{Test time decoding}
+
+
+During test time decoding, predict the tag with highest marginal probability for each variable. \textbf{DO NOT} run the belief propagation here.
+
+
+
+\subsection{Autolab Submission \pts{30}}
+You must submit a .tar file named \lstinline{beliefprop.tar} containing \lstinline{beliefprop.py}, which contains all of your code.
+
+You can create that file by running:
+\begin{lstlisting}
+tar -cvf beliefprop.tar beliefprop.py
+\end{lstlisting}
+from the directory containing your code.
+
+Some additional tips: {\bf DO NOT} compress your files; you are just
+creating a tarball. Do not use tar \texttt{-czvf}.  {\bf DO NOT} put
+the above files in a folder and then tar the folder.  Autolab is case
+sensitive, so observe that all your files should be named in {\bf
+  lowercase}. You must submit this file to the corresponding homework
+link on Autolab. 
+
+Your code will \textbf{not} be autograded on Autolab. Instead, we will grade your code by hand; that is, we will read through your code in order to grade it. As such, please carefully identify major sections of the code via comments. 
+
+
+\clearpage
+\section{Collaboration Policy}
+
+    After you have completed all other components of this assignment, report your answers to the collaboration policy questions detailed in the Academic Integrity Policies for this course.
+    \begin{enumerate}
+        \item Did you receive any help whatsoever from anyone in solving this assignment? If so, include full details including names of people who helped you and the exact nature of help you received.
+        
+        \begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        % Place your solution between the comment lines below.
+        % Do not modify the tcolorbox.
+        % ----------------------------------------------------
+        % STUDENT SOLUTION HERE
+        % ----------------------------------------------------
+       \end{tcolorbox}
+        \item Did you give any help whatsoever to anyone in solving this assignment? If so, include full details including names of people you helped and the exact nature of help you offered.
+        
+        \begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        % Place your solution between the comment lines below.
+        % Do not modify the tcolorbox.
+        % ----------------------------------------------------
+        % STUDENT SOLUTION HERE
+        % ----------------------------------------------------
+       \end{tcolorbox}
+        \item Did you find or come across code that implements any part of this assignment? If so, include full details including the source of the code and how you used it in the assignment.
+        
+        \begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        % Place your solution between the comment lines below.
+        % Do not modify the tcolorbox.
+        % ----------------------------------------------------
+        % STUDENT SOLUTION HERE
+        % ----------------------------------------------------
+       \end{tcolorbox}
+    \end{enumerate}
+%\clearpage
+%\input{programming-OLD.tex}
+
+\end{document}

@@ -1,0 +1,717 @@
+\documentclass[11pt,addpoints,answers]{exam}
+%\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsfonts}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage{url}
+\usepackage{xfrac}
+% \usepackage{fancyhdr} % CONFLICTS with the exam class
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{paralist}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{paralist}
+\usepackage[svgname]{xcolor}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{times}
+\usepackage{url}
+\usepackage{comment}
+\usepackage{environ}
+\usepackage{times}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{parskip} % For NIPS style paragraphs.
+\usepackage[compact]{titlesec} % Less whitespace around titles
+\usepackage[inline]{enumitem} % For inline enumerate* and itemize*
+\usepackage{datetime}
+\usepackage{comment}
+% \usepackage{minted}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes,decorations,bayesnet}
+%\usepackage{framed}
+\usepackage{booktabs}
+\usepackage{cprotect}
+\usepackage{xcolor}
+\usepackage{verbatimbox}
+\usepackage[many]{tcolorbox}
+\usepackage{cancel}
+\usepackage{wasysym}
+\usepackage{mdframed}
+\usepackage{subcaption}
+\usetikzlibrary{shapes.geometric}
+\usepackage[nomessages]{fp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting for \CorrectChoice of "exam" %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\CorrectChoiceEmphasis{}
+\checkedchar{\blackcircle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Better numbering                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Common Math Commands                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{mathabbreviations.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code highlighting with listings         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{light-gray}{gray}{0.95}
+
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinelanguage{Shell}{
+  keywords={tar, cd, make},
+  %keywordstyle=\color{bluekeywords}\bfseries,
+  alsoletter={+},
+  ndkeywords={python, py, javac, java, gcc, c, g++, cpp, .txt, octave, m, .tar},
+  %ndkeywordstyle=\color{bluekeywords}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]",
+  backgroundcolor = \color{light-gray}
+}
+
+\lstset{columns=fixed, basicstyle=\ttfamily,
+    backgroundcolor=\color{light-gray},xleftmargin=0.5cm,frame=tlbr,framesep=4pt,framerule=0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom box for highlights               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define box and box title style
+\tikzstyle{mybox} = [fill=blue!10, very thick,
+    rectangle, rounded corners, inner sep=1em, inner ysep=1em]
+
+% \newcommand{\notebox}[1]{
+% \begin{tikzpicture}
+% \node [mybox] (box){%
+%     \begin{minipage}{\textwidth}
+%     #1
+%     \end{minipage}
+% };
+% \end{tikzpicture}%
+% }
+
+\NewEnviron{notebox}{
+\begin{tikzpicture}
+\node [mybox] (box){
+    \begin{minipage}{\textwidth}
+        \BODY
+    \end{minipage}
+};
+\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands showing / hiding solutions     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% To HIDE SOLUTIONS (to post at the website for students), set this value to 0: \def\issoln{0}
+\def\issoln{1}
+% Some commands to allow solutions to be embedded in the assignment file.
+\ifcsname issoln\endcsname \else \def\issoln{0} \fi
+% Default to an empty solutions environ.
+\NewEnviron{soln}{}{}
+% Default to an empty qauthor environ.
+\NewEnviron{qauthor}{}{}
+% Default to visible (but empty) solution box.
+\newtcolorbox[]{studentsolution}[1][]{%
+    breakable,
+    enhanced,
+    colback=white,
+    title=Solution,
+    #1
+}
+
+\if\issoln 1
+% Otherwise, include solutions as below.
+\RenewEnviron{soln}{
+    \leavevmode\color{red}\ignorespaces
+    \textbf{Solution} \BODY
+}{}
+\fi
+
+\if\issoln 1
+% Otherwise, include solutions as below.
+\RenewEnviron{solution}{}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for customizing the assignment %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\courseNum}{10-418 / 10-618}
+\newcommand{\courseName}{Machine Learning for Structured Data}
+\newcommand{\courseSem}{Fall 2019}
+\newcommand{\piazzaUrl}{\url{https://piazza.com/cmu/fall2019/1041810618}}
+\newcommand{\hwNum}{Homework 4}
+\newcommand{\hwTopic}{Topic Modeling and Monte Carlo Methods}
+\newcommand{\hwName}{\hwNum: \hwTopic}
+\newcommand{\outDate}{Nov. 07, 2019}
+\newcommand{\dueDate}{Nov. 18, 2019 11:59 PM}
+\newcommand{\taNames}{Aakanksha, Austin, Karthika}
+
+\newcommand{\recentChange}[1]{{\color{red}#1}}
+
+%\pagestyle{fancyplain}
+\lhead{\hwName}
+\rhead{\courseNum}
+\cfoot{\thepage{} of \numpages{}}
+
+\title{\textsc{\hwName}} % Title
+
+
+\author{\courseName\\
+  Carnegie Mellon University \\
+\url{piazza.com/cmu/fall2018/10606607} \\
+OUT: \outDate{}\thanks{Compiled on \today{} at \currenttime{}} \\
+DUE: \dueDate{} \\ 
+TAs: Aakanksha, Edgar, Sida, Varsha}
+
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Useful commands for typesetting the questions %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand \expect {\mathbb{E}}
+\newcommand \mle [1]{{\hat #1}^{\rm MLE}}
+\newcommand \map [1]{{\hat #1}^{\rm MAP}}
+\newcommand \argmax {\operatorname*{argmax}}
+\newcommand \argmin {\operatorname*{argmin}}
+\newcommand \code [1]{{\tt #1}}
+\newcommand \datacount [1]{\#\{#1\}}
+\newcommand \ind [1]{\mathbb{I}\{#1\}}
+
+\newcommand{\blackcircle}{\tikz\draw[black,fill=black] (0,0) circle (1ex);}
+\renewcommand{\circle}{\tikz\draw[black] (0,0) circle (1ex);}
+
+\newcommand{\pts}[1]{\textbf{[#1 pts]}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document configuration %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't display a date in the title and remove the white space
+\predate{}
+\postdate{}
+\date{}
+
+% Don't display an author and remove the white space
+%\preauthor{}
+%\postauthor{}
+
+%%%%%%%%%%%%%%%%%%
+% Begin Document %
+%%%%%%%%%%%%%%%%%% 
+
+
+\begin{document}
+
+\section*{}
+\begin{center}
+  \textsc{\LARGE \hwNum} \\
+  \textsc{\LARGE \hwTopic\footnote{Compiled on \today{} at \currenttime{}}} \\
+  \vspace{1em}
+  \textsc{\large \courseNum{} \courseName{} (\courseSem)} \\
+  %\vspace{0.25em}
+  \piazzaUrl\\
+  \vspace{1em}
+  OUT: \outDate \\
+  %\vspace{0.5em}
+  DUE: \dueDate \\
+  TAs: \taNames
+\end{center}
+
+
+\section*{START HERE: Instructions}
+
+%\vspace{-1em}
+\begin{notebox}
+\paragraph{Summary} In this assignment, you will implement a collapsed Gibbs sampler for a Gaussian Latent Dirichlet Allocation topic model. Section \ref{sec:warmup} will help you develop a better understanding of similar sampling methods through some warm-up problems. Then, in Section \ref{sec:code}, you will build on this knowledge to build a topic model that discovers topics underlying a set of documents. 
+\end{notebox}
+
+\begin{itemize}
+\item \textbf{Collaboration policy:} Collaboration on solving the homework is allowed, after you have thought about the problems on your own. It is also OK to get clarification (but not solutions) from books or online resources, again after you have thought about the problems on your own. There are two requirements: first, cite your collaborators fully and completely (e.g., ``Jane explained to me what is asked in Question 2.1''). Second, write your solution {\em independently}: close the book and all of your notes, and send collaborators out of the room, so that the solution comes from you only.  See the Academic Integrity Section on the course site for more information: \url{http://www.cs.cmu.edu/~mgormley/courses/10418/about.html#7-academic-integrity-policies}
+
+\item\textbf{Late Submission Policy:} See the late submission policy here: \url{http://www.cs.cmu.edu/~mgormley/courses/10418/about.html#6-general-policies}
+
+%\item\textbf{Submitting your work:} 
+
+%\begin{itemize}
+
+% Since we are not using Canvas this semester.
+% \item \textbf{Canvas:} We will use an online system called Canvas for short answer and multiple choice questions. You can log in with your Andrew ID and password. (As a reminder, never enter your Andrew password into any website unless you have first checked that the URL starts with "https://" and the domain name ends in ".cmu.edu" -- but in this case it's OK since both conditions are met).  You may only \textbf{submit once} on canvas, so be sure of your answers before you submit.  However, canvas allows you to work on your answers and then close out of the page and it will save your progress.  You will not be granted additional submissions, so please be confident of your solutions when you are submitting your assignment.
+
+\item \textbf{Autolab:} You will submit your code for programming questions on the homework to Autolab (\url{https://autolab.andrew.cmu.edu/}). After uploading your code,
+we will manually grade your code by hand. We will not use Autolab to autograde your code.
+
+\item \textbf{Submitting your work to Gradescope:} For written problems such as short answer, multiple choice, derivations, proofs, or plots, we will be using Gradescope (\url{https://gradescope.com/}). Please use the provided template. Submissions can be handwritten, but should be labeled and clearly legible. If your writing is not legible, you will not be awarded marks. Alternatively, submissions can be written in LaTeX. Regrade requests can be made, however this gives the TA the opportunity to regrade your entire paper, meaning if additional mistakes are found then points will be deducted. For short answer questions you \textbf{should not} include your work in your solution.  If you include your work in your solutions, your assignment may not be graded correctly by our AI assisted grader. 
+
+%\end{itemize}
+
+%\item \textbf{Materials:} Download from autolab the tar file (``Download handout"). The tar file will contain all the data that you will need in order to complete this assignment.
+
+\end{itemize}
+
+%Homework 9 will be on Gradescope, but will be "Canvas-style"- all problems will be multiple choice, select all that apply, or numerical answer. 
+
+For multiple choice or select all that apply questions, shade in the box or circle in the template document corresponding to the correct answer(s) for each of the questions. For \LaTeX{} users, replace \lstinline{\choice} with \lstinline{\CorrectChoice} to obtain a shaded box/circle, and don't change anything else.
+
+
+\clearpage
+
+\section{Written Questions \pts{\numpoints{}}}
+\label{sec:warmup}
+Answer the following questions in the template provided.  Then upload your solutions to Gradescope. You may use \LaTeX\ or print the template and hand-write your answers then scan it in. Failure to use the template may result in a penalty. There are \numpoints{} points and \numquestions{} questions.
+
+\subsection{Markov Chain Monte Carlo Methods}
+\begin{questions}
+\question In class, we studied two Monte Carlo estimation methods: rejection sampling and importance sampling. Given a proposal distribution $Q(x)$, answer the following questions:
+\begin{parts}
+\part[1] If sampling from $Q(x)$ is computationally expensive, which of the following methods is likely to be more efficient?
+\begin{checkboxes}
+     \choice Rejection Sampling
+     \choice Importance Sampling
+     \choice Both are equally inefficient
+    \end{checkboxes}
+    
+\part[1] If $Q(x)$ is high-dimensional, which of the following methods is more efficient?
+\begin{checkboxes}
+     \choice Rejection Sampling
+     \choice Importance Sampling
+     \choice Both are equally inefficient
+    \end{checkboxes}
+  
+\part[1] For high-dimensional distributions, MCMC methods such as Metropolis Hastings are more efficient than rejection sampling and importance sampling.
+\begin{checkboxes}
+     \choice True
+     \choice False
+    \end{checkboxes}
+
+\part[1] For low-dimensional distributions, MCMC methods such as Metropolis Hastings produce better sammples than rejection sampling and importance sampling.
+\begin{checkboxes}
+     \choice True
+     \choice False
+    \end{checkboxes}
+   
+\end{parts}
+
+\question[2] Suppose you are using MCMC methods to sample from a distribution with multiple modes. Briefly explain what complications may arise while using MCMC.
+\begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+\end{questions}
+
+\clearpage
+\subsection{Metropolis Hastings}
+
+\begin{questions}
+\question[4] Recall that conjugate priors lead to the posterior belonging to the same probability distribution family as the prior. Show that the beta distribution is the conjugate prior for the binomial distribution.
+\begin{tcolorbox}[fit,height=6cm, width=15cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\question Show that
+\begin{parts}
+    \part[5] The Metropolis Hastings  algorithm satisfies detailed balance.
+    \begin{tcolorbox}[fit,height=8cm, width=15cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+      \part[5] A variant of the Metropolis Hastings algorithm with the acceptance probability defined  without the minimum, ie acceptance probability $a = A(x\xleftarrow{}x_i) = \frac{p(x)q(x_i | x)}{p(x_i)q(x |x_i)}$, wouldn't satisfy the detailed balance.
+       \begin{tcolorbox}[fit,height=8cm, width=15cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+    
+    \part[5] A sampler which resamples each variable conditioned only on the parents of a Bayesian Network wouldn't satisfy the detailed balance.
+       \begin{tcolorbox}[fit,height=8cm, width=15cm, blank, borderline={1pt}{-2pt}]
+        \end{tcolorbox}
+\end{parts}
+
+\end{questions}
+
+
+\clearpage
+\subsection{Gibbs Sampling and Topic Modeling}
+\begin{questions}
+\question[3] Consider the following graphical model:\\
+\begin{figure}[h]
+\centering
+\tikz{
+\node[latent] (A) {A};
+\node[latent,below left= 1 cm and 1 cm of A] (B) {B};
+\node[latent,below right= 1 cm and 1 cm of A] (C) {C};
+\node[latent,below right=1 cm and 1 cm of C] (E) {E};
+\node[latent,above right=1 cm and 1 cm of E] (D) {D};
+\node[latent,below right=1 cm and 1 cm of B] (G) {F};
+
+\edge {A} {B,C};
+\edge {B} {G};
+\edge {C} {G,E};
+\edge {D} {E};
+}
+\caption{Bayesian Network Structure}
+\label{fig:bayesnet}
+\end{figure}\\
+
+Assume that we run Gibbs sampling on this graph, write the conditional probabilities which will be computed by the sampler for each variable. The variables are sampled in the order $A-B-C-D-F-E$
+\begin{tcolorbox}[fit,height=8cm, width=15cm, blank, borderline={1pt}{-2pt}]
+        \end{tcolorbox}
+
+\question Now let's run a collapsed Gibbs sampler for a topic model on a toy dataset. We will run sampling for a regular LDA (Latent Dirichlet Allocation) model. Suppose our dataset consisting of 4 documents is as follows:\\
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cl}
+        X = &\{fizz fizz buzz fizz fizz buzz,\\
+         &  fizz buzz fizz buzz,\\
+         & foo bar foo bar foo bar,\\
+            & fizz buzz foo bar\} \\
+    \end{tabular}
+\end{table}\\
+where $x_{mn}$ refers to the $m^{th}$ word in document $n$. The vocabulary of this dataset consists of 4 unique words. Assume that we run our LDA model with 2 topics, prior parameters set to $\alpha = 0.1, \beta = 0.1$ and start with the following sample of topic assignments:\\
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cl}
+        Z = &\{0 0 1 0 1 1,\\
+         &  1 0 0 1,\\
+         & 0 1 0 1 1 0,\\
+            & 0 1 0 1\} \\
+    \end{tabular}
+\end{table}\\
+where $z_{mn}$ refers to the topic assigned to the $m^{th}$ word in document $n$. Note that $\alpha$ and $\beta$ are the prior parameters for the document-topic and word-topic distributions respectively.
+\begin{parts}
+    \part[1] Compute the word-topic counts table with this assignment
+        \begin{center}
+ \begin{tabular}{ |c|p{2cm}|p{2cm}|} 
+ \hline
+ \textbf{ } & \textbf{0} & \textbf{1}\\
+ \hline
+\textbf{fizz} &  & \\ 
+ \hline
+ \textbf{buzz}  &  &\\ 
+ \hline
+  \textbf{foo}  &  &\\ 
+ \hline
+  \textbf{bar}  &  &\\ 
+ \hline
+ 
+\end{tabular}
+\end{center}
+
+    \part[1] Compute the document-topic counts table with this assignment 
+           \begin{center}
+ \begin{tabular}{ |c|p{2cm}|p{2cm}|} 
+ \hline
+ \textbf{ } & \textbf{0} & \textbf{1}\\
+ \hline
+\textbf{0} &  & \\ 
+ \hline
+ \textbf{1}  &  &\\ 
+ \hline
+  \textbf{2}  &  &\\ 
+ \hline
+  \textbf{3}  &  &\\ 
+ \hline
+ 
+\end{tabular}
+\end{center}
+
+    
+\part[2] Suppose we want to sample a new topic assignment $z_{00}$ for word $x_{00}$. Compute the full conditional probability distribution $p(z_{00} | \zv_{0}^{-0}, X, \alpha, \beta)$ from which this assignment will be sampled under the collapsed Gibbs sampler.
+           \begin{center}
+ \begin{tabular}{ |c|p{2cm}|p{2cm}|} 
+ \hline
+ \textbf{ } & \textbf{0} & \textbf{1}\\
+ \hline
+\textbf{$p(z_{00} | \zv_{0}^{-0}, X, \alpha, \beta)$} &  & \\ 
+ \hline
+ 
+\end{tabular}
+\end{center}
+
+
+\part[2] Assume that the new topic assignment is $z_{00} = 1$. What is the updated word-topic distribution?
+\begin{center}
+ \begin{tabular}{ |c|p{2cm}|p{2cm}|} 
+ \hline
+ \textbf{ } & \textbf{0} & \textbf{1}\\
+ \hline
+\textbf{fizz} &  & \\ 
+ \hline
+ \textbf{buzz}  &  &\\ 
+ \hline
+  \textbf{foo}  &  &\\ 
+ \hline
+  \textbf{bar}  &  &\\ 
+ \hline
+ 
+\end{tabular}
+\end{center}
+
+\end{parts}
+\end{questions}
+
+\clearpage
+\subsection{Empirical Questions}
+
+The following questions should be completed after you work through the programming portion of this assignment (Section \ref{sec:code}). 
+
+\begin{questions}
+\question[10] After training your model, report the top 10 most probable words for 5 of your favorite discovered topics. Note that here most probable is defined as the word whose embedding maximizes the $t$ distribution probability for a given class. 
+\bgroup
+\def\arraystretch{1.5}
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+ \textbf{Rank} & \textbf{Topic 0} & \textbf{Topic 1} &  \textbf{Topic 2} & \textbf{Topic 3} & \textbf{Topic 4} \\
+ \hline
+1 & & & & & \\ \hline
+2 & & & & & \\ \hline
+3 & & & & & \\ \hline
+4 & & & & & \\ \hline
+5 & & & & & \\ \hline
+6 & & & & & \\ \hline
+7 & & & & & \\ \hline
+8 & & & & & \\ \hline
+9 & & & & & \\ \hline
+10 & & & & & \\ \hline
+\end{tabular}
+\end{center}
+\egroup
+%TODO: Add solution
+\question[10] Plot the log-likelihood of the data defined by equation \ref{likelihood} over training for 50 iterations. Record this probability every 10 iterations. \emph{Note: Your plot must be machine generated.}
+\begin{tcolorbox}[fit,height=8cm, width=15cm, blank, borderline={1pt}{-2pt}]
+\end{tcolorbox}
+
+\end{questions}
+
+\subsection{Wrap-up Questions}
+
+\begin{questions}
+
+\question[1] \textbf{Multiple Choice:} Did you correctly submit your code to Autolab?
+    \begin{checkboxes}
+     \choice Yes 
+     \choice No
+    \end{checkboxes}
+
+\question[1] \textbf{Numerical answer:} How many hours did you spend on this assignment?.
+    \begin{tcolorbox}[fit,height=1cm, width=2cm, blank, borderline={1pt}{-2pt}]
+    % STUDENT SOLUTION HERE
+    \end{tcolorbox}
+
+\end{questions}
+
+\clearpage
+
+\subsection{Collaboration Policy}
+
+    After you have completed all other components of this assignment, report your answers to the collaboration policy questions detailed in the Academic Integrity Policies for this course.
+    \begin{enumerate}
+        \item Did you receive any help whatsoever from anyone in solving this assignment? If so, include full details including names of people who helped you and the exact nature of help you received.
+        
+        \begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        % Place your solution between the comment lines below.
+        % Do not modify the tcolorbox.
+        % ----------------------------------------------------
+        % STUDENT SOLUTION HERE
+        % ----------------------------------------------------
+       \end{tcolorbox}
+        \item Did you give any help whatsoever to anyone in solving this assignment? If so, include full details including names of people you helped and the exact nature of help you offered.
+        
+        \begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        % Place your solution between the comment lines below.
+        % Do not modify the tcolorbox.
+        % ----------------------------------------------------
+        % STUDENT SOLUTION HERE
+        % ----------------------------------------------------
+       \end{tcolorbox}
+        \item Did you find or come across code that implements any part of this assignment? If so, include full details including the source of the code and how you used it in the assignment.
+        
+        \begin{tcolorbox}[fit,height=4cm, width=15cm, blank, borderline={1pt}{-2pt},nobeforeafter]
+        % Place your solution between the comment lines below.
+        % Do not modify the tcolorbox.
+        % ----------------------------------------------------
+        % STUDENT SOLUTION HERE
+        % ----------------------------------------------------
+       \end{tcolorbox}
+    \end{enumerate}
+    
+\clearpage
+
+\section{Programming \pts{} }
+\label{sec:code}
+
+\subsection{Task Background}
+
+Topic modeling is the task of finding latent semantic categories that group words together called \textit{topics}. The typical approach to this task is to build a model by telling a generative story: For each document we assign a probability of picking a set of topics and for each topic I have some probability of picking any given word. The decision of what these probabilities are and how our generative story plays out determines not just how successful our model is, but also how computationally feasible inference is.
+
+Because we've seen the power of vector representations of words in previous assignments, let's assume that we want to model words as vectors in $\mathbb{R}^M$. A reasonable assumption is that words that belong to similar topics are close to each other in embedding space. One way to encode this intuition is to say that given a topic $k$, a word embedding $\vv$ is drawn from the distribution $\mathcal{N}(\muv_k, I)$. This implies that if we can discover these $\muv_k$s we can discover a set of topics that explain our observed words. In order to make this practical, we'll need to flesh out our generative story. 
+
+Suppose we're given a corpus of $D$ documents and a fixed number of topics $K$. Our model will look like this:
+
+\begin{enumerate}
+    \item For topic $k = 1$ to $K$:
+    \begin{enumerate}
+        \item Draw topic mean $\muv_k \sim \mathcal{N}(\muv, \frac{1}{\kappa}I)$
+    \end{enumerate}
+    \item For each document $d$ in corpus $D$:
+    \begin{enumerate}
+        \item Draw topic distribution $\thetav_d \sim \text{Dir}(\alpha)$
+        \item For each word index $n$ from 1 to $N_d$
+        \begin{enumerate}
+            \item Draw a topic $z_n \sim \text{Categorical}(\thetav_d)$
+            \item Draw $\vv_{d, n} \sim \mathcal{N}(\muv_{z_n}, I)$
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+In our case, we will fix $K=5$, $|D| = $ 1208, and our embeddings live in $\mathbb{R}^{50}$. 
+
+We will see in section \ref{sec:gibbs} how this can be translated into a practical sampling algorithm. 
+
+\subsection{Data}
+
+For this task we've provided you with a selection of news articles in the numpy file \lstinline{news_corpus.npy}. This array is $|D| \times |V|$ where $V$ is our vocabulary. Each $i, j$ entry corresponds to the number of instances of word $j$ in document $i$. 
+
+In order to save you the trouble of training word embeddings before you can even start the real task, we have also provided 50 dimensional GloVe embeddings in the numpy file named \lstinline{news_embeddings.npy} along with a dictionary to map between words to indices in the pickle file named \lstinline{mews_word2index.pkl}. The embedding array is a $|V|\times 50$ array. 
+
+\subsection{Gibbs Sampler}
+\label{sec:gibbs}
+
+Given the generative model described earlier we'd like to know the posterior distribution over our parameters. As is the case for almost all interesting models, we don't have an analytical form for this. We'll make do by approximating the posterior with a collapsed Gibbs sampler. It'll be a Gibbs sampler because we will iteratively sample word-topic assignments conditioned on all over assignments and parameters. It's said to be collapsed because we will have integrated over nuisance parameters to provide a simpler distribution to sample from.   
+
+\begin{equation}
+\label{posterior}
+    p(z_{d, i} | z_{-(d, i)}, \Vv_d, \xiv, \alphav) \propto (n_{k, d} + \alpha_k) \times t_{v_k-M+1}\bigg( \vv_{d, i} | \muv_k, I \bigg)
+\end{equation}
+
+Equation \ref{posterior} shows the full conditional on which we can build a Gibbs sampler. This equation has a lot to unpack. 
+
+\textbf{Prior Parameters}
+
+In the above equation, our prior parameters were summarized as the tuple $\xiv = (\muv, \kappa, \Sigmav, \nu)$ along with the vector of parameters $\alphav$. These are the same parameters as those in the introductory section. We will treat the hyperparameter $\alphav$ as $\alpha_i = 10$ for all classes $i$. We will also set $\kappa = 0.01$, $\Sigmav = I_M$, and $\nu = M$.   
+
+\textbf{Data Statistics}
+
+\begin{equation*}
+    \begin{split}
+        N_k &= \#\{ \text{words assigned to topic $k$ across all documents}\} \\
+        \Bar{\vv}_k &= \frac{\sum_{d}\sum_{i:z_{d, i}=k}(\vv_{d, i})}{N_k} \\
+    \end{split}
+\end{equation*}
+
+\textbf{Updated Parameters}
+
+\begin{equation*}
+    \begin{split}
+        \kappa_k &= \kappa + N_k \\
+        \nu_k &= \nu + N_k \\
+        \muv_k &= \frac{\kappa \muv + N_k \Bar{\vv_k}}{\kappa_k} \\
+    \end{split}
+\end{equation*}
+
+\textbf{Important Distributions}
+
+The most important distribution for you to be familiar with for this assignment is the multivariate $t$ distribution given parameters $(\muv_k, \kappa_k, \nu')$. The final parameter is the degrees of freedom for the distribution and is denoted in the subscript of the distribution $t_{\nu'}(\cdot)$. We have provided a function in the file \lstinline{utils.py} called \lstinline{multivariate_t_distribution} that will return log-probabilities according to this model. 
+
+\subsection{Implementation Details}
+
+Now that we have our notation sorted out, we can ensure that we understand the steps to implement our sampler.
+
+\textbf{Implementation Outline}
+
+\begin{enumerate}
+    \item Load in the provided embeddings and the text of our corpus.
+    \item Randomly initialize a dictionary that places each word in each document into a given topic. 
+    \item Calculate statistics and update our posterior parameters and calculate the full conditional in equation \ref{posterior} for each word and each possible topic assignment. \textcolor{red}{Note: This will require adjusting the statistics to not include the current word.} 
+    \item Normalize the above distributions and sample from a multinomial over the $k$ topics with the posterior distribution.
+    \item Reassign words to topics based on the above samples. 
+    \item Go back to step 4 and repeat until convergence. 
+\end{enumerate}
+
+\textbf{Numerical Issues}
+
+For numerical stability, you must calculate log-probabilities and only convert to regular probability distribution before the normalization step. 
+
+One way to increase stability is to keep track of the maximum log-probability encountered while iterating over topics in step 5. Then before normalization, subtract of this maximum log-probability from each log-probability. 
+
+\subsection{Evaluation}
+
+We will track the joint probability of $z_k, v_{d, i}, \muv_k, \theta_d$, for each word $i$, document $d$, and currently assigned category $k$. This will be calculate using the following equation. 
+
+\begin{equation}
+\label{likelihood}
+    p(z_k, v_{d,i}, \muv_k, \theta_d) = p(v_{d, i} | z_k, \muv_k) p(z_k | \theta_k) p(\muv_k) p(\theta_d) 
+\end{equation}
+
+Please refer to the generative model for Gaussian-LDA to define each of these probabilities. Also note that because we're using a collapsed Gibbs sampler, we will not have estimate one of these parameters before.  
+
+
+\subsection{Autolab Submission \pts{35}}
+
+You must submit a .tar file named \lstinline{gaussianlda.tar} containing \lstinline{gaussianlda.py}, which contains all of your code.
+
+You can create that file by running:
+\begin{lstlisting}
+tar -cvf gaussianlda.tar gaussianlda.py
+\end{lstlisting}
+from the directory containing your code.
+
+Some additional tips: {\bf DO NOT} compress your files; you are just
+creating a tarball. Do not use tar \texttt{-czvf}.  {\bf DO NOT} put
+the above files in a folder and then tar the folder.  Autolab is case
+sensitive, so observe that all your files should be named in {\bf
+  lowercase}. You must submit this file to the corresponding homework
+link on Autolab. 
+
+Your code will \textbf{not} be autograded on Autolab. Instead, we will grade your code by hand; that is, we will read through your code in order to grade it. As such, please carefully identify major sections of the code via comments. 
+
+
+\end{document}
